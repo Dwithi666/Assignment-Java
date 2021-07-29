@@ -1,0 +1,31 @@
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Ipl {
+
+	public static void main(String[] args) {
+		ArrayList<String> ipl13 = new ArrayList<>();
+		Scanner scan = new Scanner(System.in);
+		System.out.println(" Best 5 batsmen of IPL13 edition");
+		for (int i = 0; i < 5; i++) {
+			String str = scan.nextLine();
+			ipl13.add(str);
+		}
+
+		ArrayList<String> ipl12 = new ArrayList<>();
+		Scanner scan1 = new Scanner(System.in);
+		System.out.println(" Best 5 batsmen of IPL12 edition");
+		for (int i = 0; i < 5; i++) {
+			String str1 = scan.nextLine();
+			ipl12.add(str1);
+		}
+
+		ipl13.retainAll(ipl12);
+		System.out.println("Constant run scorers");
+
+		for (String str : ipl13)
+			System.out.println(str);
+
+	}
+}
