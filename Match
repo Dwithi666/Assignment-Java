@@ -1,0 +1,254 @@
+public abstract class Match {
+	
+	private int currentscore;
+	private float currentover;
+	private int target;
+	
+	abstract float calculateRunrate();
+	abstract int calculateBalls();
+	abstract void display(float reqRunrate, int balls);
+	
+	public int getCurrentscore() {
+		return currentscore;
+	}
+	public void setCurrentscore(int currentscore) {
+		this.currentscore = currentscore;
+	}
+	public float getCurrentover() {
+		return currentover;
+	}
+	public void setCurrentover(float currentover) {
+		this.currentover = currentover;
+	}
+	public int getTarget() {
+		return target;
+	}
+	public void setTarget(int target) {
+		this.target = target;
+	}	
+}
+
+public class Odi extends Match {
+
+	int remainingruns;
+	int balls;
+	float reqRunrate;
+
+	@Override
+	float calculateRunrate() {
+
+		int remainingruns = getTarget() - getCurrentscore();
+
+		try {
+			reqRunrate = ((float) remainingruns / calculateBalls()) * 6;
+		} catch (Exception ArithmeticException) {
+		}
+
+		this.remainingruns = remainingruns;
+		return reqRunrate;
+	}
+
+	@Override
+	int calculateBalls() {
+
+		float f = getCurrentover();
+		String co = Float.toString(f);
+		String[] convert = co.split("\\.");
+		int overs = Integer.parseInt(convert[0]);
+		int ballscount = Integer.parseInt(convert[1]);
+		int completedballs = (overs * 6) + ballscount;
+		int balls = 300 - completedballs;
+		this.balls = balls;
+		return balls;
+	}
+
+	@Override
+	void display(float reqRunrate, int balls) {
+		System.out.println("Need " + remainingruns + "runs in " + balls + " balls\nRequired Runrate: " + reqRunrate);
+	}
+}
+public class T20 extends Match {
+
+	int remainingruns;
+	int balls;
+	float reqRunrate;
+
+	@Override
+	float calculateRunrate() {
+
+		int remainingruns = getTarget() - getCurrentscore();
+
+		try {
+			reqRunrate = ((float) remainingruns / calculateBalls()) * 6;
+		} catch (Exception ArithmeticException) {
+		}
+
+		this.remainingruns = remainingruns;
+		return reqRunrate;
+	}
+
+	@Override
+	int calculateBalls() {
+
+		float f = getCurrentover();
+		String co = Float.toString(f);
+		String[] convert = co.split("\\.");
+		int overs = Integer.parseInt(convert[0]);
+		int ballscount = Integer.parseInt(convert[1]);
+		int completedballs = (overs * 6) + ballscount;
+		int balls = 120 - completedballs;
+		this.balls = balls;
+		return balls;
+	}
+
+	@Override
+	void display(float reqRunrate, int balls) {
+		System.out.println("Need " + remainingruns + "runs in " + balls + " balls\nRequired Runrate: " + reqRunrate);
+	}
+}
+
+public class Test extends Match {
+		
+		  int remainingruns;
+			int balls;
+			float reqRunrate;
+			
+			@Override
+			float calculateRunrate() {
+				
+				int remainingruns=getTarget()- getCurrentscore();
+				
+				try {
+					 reqRunrate = ((float)remainingruns/calculateBalls())*6;
+					}
+				catch(Exception ArithmeticException) {
+					}
+				
+				this.remainingruns = remainingruns;
+				return reqRunrate;
+			}
+
+			@Override
+			 int calculateBalls() {
+				
+				 float f = getCurrentover();
+			     String co = Float.toString(f);
+			     String[] convert = co.split("\\.");
+			     int overs = Integer.parseInt(convert[0]);
+			     int ballscount = Integer.parseInt(convert[1]);
+			     int completedballs =(overs*6)+ballscount;
+			     int balls= 540-completedballs;
+			     this.balls=balls;
+			return balls;
+			}
+
+			@Override
+			void display(float reqRunrate, int balls) {
+				System.out.println("Need "+remainingruns+"runs in "+balls+ " balls\nRequired Runrate: "+reqRunrate);
+			}
+		}
+
+
+
+
+
+
+
+
+import java.util.Scanner;
+
+class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("1.ODI\n2.Test\n3.T20");
+		int n = sc.nextInt();
+
+		switch (n) {
+
+		case 1:
+			Odi odi = new Odi();
+			System.out.println("enter the current runs");
+			odi.setCurrentscore(sc.nextInt());
+			System.out.println("enter the current over");
+			odi.setCurrentover(sc.nextFloat());
+			System.out.println("enter the target");
+			odi.setTarget(sc.nextInt());
+			odi.display(odi.calculateRunrate(), odi.calculateBalls());
+			break;
+
+		case 2:
+			Test test = new Test();
+			System.out.println("enter the current runs");
+			test.setCurrentscore(sc.nextInt());
+			System.out.println("enter the current over");
+			test.setCurrentover(sc.nextFloat());
+			System.out.println("enter the target");
+			test.setTarget(sc.nextInt());
+			test.display(test.calculateRunrate(), test.calculateBalls());
+
+			break;
+		case 3:
+			T20 t20 = new T20();
+			System.out.println("enter the current runs");
+			t20.setCurrentscore(sc.nextInt());
+			System.out.println("enter the current over");
+			t20.setCurrentover(sc.nextFloat());
+			System.out.println("enter the target");
+			t20.setTarget(sc.nextInt());
+			t20.display(t20.calculateRunrate(), t20.calculateBalls());
+			break;
+
+		}
+	}
+}
+
+
+import java.util.Scanner;
+
+class Main {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("1.ODI\n2.Test\n3.T20");
+		int n = sc.nextInt();
+
+		switch (n) {
+
+		case 1:
+			Odi odi = new Odi();
+			System.out.println("enter the current runs");
+			odi.setCurrentscore(sc.nextInt());
+			System.out.println("enter the current over");
+			odi.setCurrentover(sc.nextFloat());
+			System.out.println("enter the target");
+			odi.setTarget(sc.nextInt());
+			odi.display(odi.calculateRunrate(), odi.calculateBalls());
+			break;
+
+		case 2:
+			Test test = new Test();
+			System.out.println("enter the current runs");
+			test.setCurrentscore(sc.nextInt());
+			System.out.println("enter the current over");
+			test.setCurrentover(sc.nextFloat());
+			System.out.println("enter the target");
+			test.setTarget(sc.nextInt());
+			test.display(test.calculateRunrate(), test.calculateBalls());
+
+			break;
+		case 3:
+			T20 t20 = new T20();
+			System.out.println("enter the current runs");
+			t20.setCurrentscore(sc.nextInt());
+			System.out.println("enter the current over");
+			t20.setCurrentover(sc.nextFloat());
+			System.out.println("enter the target");
+			t20.setTarget(sc.nextInt());
+			t20.display(t20.calculateRunrate(), t20.calculateBalls());
+			break;
+
+		}
+	}
+}
+
