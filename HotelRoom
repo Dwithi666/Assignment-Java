@@ -1,0 +1,149 @@
+
+public class HotelRoom {
+
+	private String hotelName;
+	private int numberOfsquareFeet;
+	private boolean hasTV;
+	private boolean hasWifi;
+
+	public HotelRoom(String hotelName, int numberOfsquareFeet, boolean hasTV, boolean hasWifi) {
+		this.hotelName = hotelName;
+		this.numberOfsquareFeet = numberOfsquareFeet;
+		this.hasTV = hasTV;
+		this.hasWifi = hasWifi;
+	}
+
+	public HotelRoom() {
+		
+	}
+
+	public int calculateTariff(int numberOfsquareFeet,int costPerSqFeet) {
+		return numberOfsquareFeet * costPerSqFeet;
+	}
+
+	public int getRatePerSqFeet() {
+		return 10;
+	}
+
+	public String getHotelName() {
+		return hotelName;
+	}
+
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
+	}
+
+	public int getNumberOfsquareFeet() {
+		return numberOfsquareFeet;
+	}
+
+	public void setNumberOfsquareFeet(int numberOfsquareFeet) {
+		this.numberOfsquareFeet = numberOfsquareFeet;
+	}
+
+	public boolean isHasTV() {
+		return hasTV;
+	}
+
+	public void setHasTV(boolean hasTV) {
+		this.hasTV = hasTV;
+	}
+
+	public boolean isHasWifi() {
+		return hasWifi;
+	}
+
+	public void setHasWifi(boolean hasWifi) {
+		this.hasWifi = hasWifi;
+	}
+
+	@Override
+	public String toString() {
+		String TV=(hasTV)?"Yes":"No";
+		String Wifi=(hasWifi)?"Yes":"No";
+		return "Hotel Name:\n"+hotelName+"\nRoom Square Feet Area:\n"+numberOfsquareFeet+"\nRoom has TV:\n"+TV+
+				"\nRoom has Wifi:\n"+Wifi;
+	}
+	
+}
+
+	
+public class DeluxeRoom extends HotelRoom {
+
+	protected int ratePerSqFeet;
+
+	public DeluxeRoom(String string, int i, boolean b, boolean c) {
+	}
+
+	public void DeluxeRoom(String hotelName, int numberOfsquareFeet, boolean hasTV, boolean hasWifi) {
+		
+		DeluxeRoom(hotelName,numberOfsquareFeet,hasTV,hasWifi);
+		this.ratePerSqFeet = 11;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "\nRoom Tariff per day is:\n"
+				+ calculateTariff(getNumberOfsquareFeet(), ratePerSqFeet);
+	}
+
+}
+
+public class DeluxeSeaViewRoom extends DeluxeRoom{
+
+	public void DeluxeSeaViewRoom(int ratePerSqFeet, String hotelName, Integer numberOfSqFeet, Boolean hasTV,
+			Boolean hasWifi) {
+		DeluxeSeaViewRoom(ratePerSqFeet, hotelName, numberOfSqFeet, hasTV, hasWifi);
+	}}
+  
+  
+  
+public class SuiteRoom extends HotelRoom {
+
+	protected int ratePerSqFeet;
+
+	public SuiteRoom(String hotelName, int numberOfsquareFeet, boolean hasTV, boolean hasWifi) {
+		super(hotelName, numberOfsquareFeet, hasTV, hasWifi);
+		this.ratePerSqFeet = 12;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "\nRoom Tariff per day is:\n"
+				+ calculateTariff(getNumberOfsquareFeet(), ratePerSqFeet);
+	}
+
+}
+
+import java.util.Scanner;
+
+public class HotelHelpDesk {
+
+	public static void main(String[] args) {
+
+		System.out.println(
+				"Hotel Room Tariff Calculator\n1.Deluxe Room\n2.Deluxe AC Room\n3.Suite AC Room\nSelect the room type");
+		Scanner sc = new Scanner(System.in);
+		int x = sc.nextInt();
+		switch (x) {
+		case 1: {
+			DeluxeRoom deluxeroom = new DeluxeRoom("Taj banjara", 999, true, true);
+			System.out.println(deluxeroom);
+			break;
+		}
+		case 2: {
+			DeluxeSeaViewRoom deluxeseaviewroom = new DeluxeSeaViewRoom();
+			System.out.println(deluxeseaviewroom);
+			break;
+		}
+		case 3: {
+			SuiteRoom suiteroom = new SuiteRoom("Taj osais", 24578, true, true);
+			System.out.println(suiteroom);
+			break;
+		}
+
+		}
+
+	}
+
+}
